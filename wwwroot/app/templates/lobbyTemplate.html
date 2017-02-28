@@ -1,0 +1,345 @@
+<div ng-show="!lobby.gameStarted">
+<div class="row">
+    <h2>Welcome to battleship lobby {{username}}</h2>
+</div>
+<div class="row">
+    <div class="col-lg-12" ng-show="!enteredLobby">
+        <br/><br/>
+        <div class="col-lg-4"><label class="control-label">Enter your username and enter the lobby: </label></div>
+        <div class="col-lg-4"><input type="text" class="form-control" ng-model="username" /></div>
+        <div class="col-lg-4"><button class="btn btn-primary" ng-click="enterLobby(username)">Enter</button></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <button class="btn btn-primary" ng-click="lobby.joinMatch(username)">Ready to play</button>
+    </div>
+    <div class="col-lg-12">
+        <h2>Users in lobby</h2>
+    </div>
+    
+    <div ng-repeat="user in lobby.lobbyList" class="col-lg-12" style="border:thin">
+        <div class="col-lg-6">
+            <label class="control-label">{{user}}</label>
+        </div>       
+    </div>  
+    <div class="col-lg-12">
+        <h2>Ready players</h2>
+    </div>
+    <div ng-repeat="user in lobby.readyPlayers" class="col-lg-12" style="border:thin">
+        <div class="col-lg-6">
+            <label class="control-label">{{user}}</label>
+        </div>
+        <div class="col-lg-6">
+            <button class="btn btn-primary" ng-click="lobby.playWith(user)">Play</button>            
+        </div>
+    </div>        
+</div>
+</div>
+<div ng-show="lobby.gameStarted">
+<div class="row" style="text-align:center">
+    <h1>Battleship online!</h1>    
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-lg-6">
+            <table class="boardTable" id="homeBoard">
+                <thead>
+                    <tr>
+                        <th class="tableHead"></th>
+                        <th class="tableHead">0</th>
+                        <th class="tableHead">1</th>
+                        <th class="tableHead">2</th>
+                        <th class="tableHead">3</th>
+                        <th class="tableHead">4</th>
+                        <th class="tableHead">5</th>
+                        <th class="tableHead">6</th>
+                        <th class="tableHead">7</th>
+                        <th class="tableHead">8</th>
+                        <th class="tableHead">9</th>
+                    </tr>
+                </thead>
+                <tr class="boardRow row0">
+                    <td class="tableCell cellIndex">A</td>
+                    <td ng-class="getClass('0','A','ONE')" ng-click="lobby.placeShip('0','A')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','A','ONE')" ng-click="lobby.placeShip('1','A')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','A','ONE')" ng-click="lobby.placeShip('2','A')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','A','ONE')" ng-click="lobby.placeShip('3','A')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','A','ONE')" ng-click="lobby.placeShip('4','A')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','A','ONE')" ng-click="lobby.placeShip('5','A')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','A','ONE')" ng-click="lobby.placeShip('6','A')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','A','ONE')" ng-click="lobby.placeShip('7','A')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','A','ONE')" ng-click="lobby.placeShip('8','A')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','A','ONE')" ng-click="lobby.placeShip('9','A')" class="tableCell cell8"></td>                    
+                </tr>
+                <tr class="boardRow row1">
+                    <td class="tableCell cellIndex">B</td>
+                    <td ng-class="getClass('0','B','ONE')" ng-click="lobby.placeShip('0','B')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','B','ONE')" ng-click="lobby.placeShip('1','B')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','B','ONE')" ng-click="lobby.placeShip('2','B')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','B','ONE')" ng-click="lobby.placeShip('3','B')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','B','ONE')" ng-click="lobby.placeShip('4','B')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','B','ONE')" ng-click="lobby.placeShip('5','B')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','B','ONE')" ng-click="lobby.placeShip('6','B')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','B','ONE')" ng-click="lobby.placeShip('7','B')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','B','ONE')" ng-click="lobby.placeShip('8','B')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','B','ONE')" ng-click="lobby.placeShip('9','B')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row2">
+                    <td class="tableCell cellIndex">C</td>
+                    <td ng-class="getClass('0','C','ONE')" ng-click="lobby.placeShip('0','C')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','C','ONE')" ng-click="lobby.placeShip('1','C')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','C','ONE')" ng-click="lobby.placeShip('2','C')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','C','ONE')" ng-click="lobby.placeShip('3','C')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','C','ONE')" ng-click="lobby.placeShip('4','C')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','C','ONE')" ng-click="lobby.placeShip('5','C')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','C','ONE')" ng-click="lobby.placeShip('6','C')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','C','ONE')" ng-click="lobby.placeShip('7','C')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','C','ONE')" ng-click="lobby.placeShip('8','C')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','C','ONE')" ng-click="lobby.placeShip('9','C')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row3">
+                    <td class="tableCell cellIndex">D</td>
+                    <td ng-class="getClass('0','D','ONE')" ng-click="lobby.placeShip('0','D')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','D','ONE')" ng-click="lobby.placeShip('1','D')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','D','ONE')" ng-click="lobby.placeShip('2','D')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','D','ONE')" ng-click="lobby.placeShip('3','D')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','D','ONE')" ng-click="lobby.placeShip('4','D')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','D','ONE')" ng-click="lobby.placeShip('5','D')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','D','ONE')" ng-click="lobby.placeShip('6','D')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','D','ONE')" ng-click="lobby.placeShip('7','D')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','D','ONE')" ng-click="lobby.placeShip('8','D')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','D','ONE')" ng-click="lobby.placeShip('9','D')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row4">
+                    <td class="tableCell cellIndex">E</td>
+                    <td ng-class="getClass('0','E','ONE')" ng-click="lobby.placeShip('0','E')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','E','ONE')" ng-click="lobby.placeShip('1','E')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','E','ONE')" ng-click="lobby.placeShip('2','E')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','E','ONE')" ng-click="lobby.placeShip('3','E')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','E','ONE')" ng-click="lobby.placeShip('4','E')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','E','ONE')" ng-click="lobby.placeShip('5','E')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','E','ONE')" ng-click="lobby.placeShip('6','E')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','E','ONE')" ng-click="lobby.placeShip('7','E')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','E','ONE')" ng-click="lobby.placeShip('8','E')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','E','ONE')" ng-click="lobby.placeShip('9','E')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row5">
+                    <td class="tableCell cellIndex">F</td>
+                    <td ng-class="getClass('0','F','ONE')" ng-click="lobby.placeShip('0','F')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','F','ONE')" ng-click="lobby.placeShip('1','F')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','F','ONE')" ng-click="lobby.placeShip('2','F')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','F','ONE')" ng-click="lobby.placeShip('3','F')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','F','ONE')" ng-click="lobby.placeShip('4','F')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','F','ONE')" ng-click="lobby.placeShip('5','F')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','F','ONE')" ng-click="lobby.placeShip('6','F')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','F','ONE')" ng-click="lobby.placeShip('7','F')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','F','ONE')" ng-click="lobby.placeShip('8','F')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','F','ONE')" ng-click="lobby.placeShip('9','F')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row6">
+                    <td class="tableCell cellIndex">G</td>
+                    <td ng-class="getClass('0','G','ONE')" ng-click="lobby.placeShip('0','G')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','G','ONE')" ng-click="lobby.placeShip('1','G')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','G','ONE')" ng-click="lobby.placeShip('2','G')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','G','ONE')" ng-click="lobby.placeShip('3','G')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','G','ONE')" ng-click="lobby.placeShip('4','G')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','G','ONE')" ng-click="lobby.placeShip('5','G')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','G','ONE')" ng-click="lobby.placeShip('6','G')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','G','ONE')" ng-click="lobby.placeShip('7','G')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','G','ONE')" ng-click="lobby.placeShip('8','G')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','G','ONE')" ng-click="lobby.placeShip('9','G')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row7">
+                    <td class="tableCell cellIndex">H</td>
+                    <td ng-class="getClass('0','H','ONE')" ng-click="lobby.placeShip('0','H')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','H','ONE')" ng-click="lobby.placeShip('1','H')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','H','ONE')" ng-click="lobby.placeShip('2','H')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','H','ONE')" ng-click="lobby.placeShip('3','H')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','H','ONE')" ng-click="lobby.placeShip('4','H')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','H','ONE')" ng-click="lobby.placeShip('5','H')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','H','ONE')" ng-click="lobby.placeShip('6','H')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','H','ONE')" ng-click="lobby.placeShip('7','H')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','H','ONE')" ng-click="lobby.placeShip('8','H')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','H','ONE')" ng-click="lobby.placeShip('9','H')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row8">
+                    <td class="tableCell cellIndex">I</td>
+                    <td ng-class="getClass('0','I','ONE')" ng-click="lobby.placeShip('0','I')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','I','ONE')" ng-click="lobby.placeShip('1','I')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','I','ONE')" ng-click="lobby.placeShip('2','I')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','I','ONE')" ng-click="lobby.placeShip('3','I')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','I','ONE')" ng-click="lobby.placeShip('4','I')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','I','ONE')" ng-click="lobby.placeShip('5','I')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','I','ONE')" ng-click="lobby.placeShip('6','I')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','I','ONE')" ng-click="lobby.placeShip('7','I')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','I','ONE')" ng-click="lobby.placeShip('8','I')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','I','ONE')" ng-click="lobby.placeShip('9','I')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row9">
+                    <td class="tableCell cellIndex">J</td>
+                    <td ng-class="getClass('0','J','ONE')" ng-click="lobby.placeShip('0','J')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','J','ONE')" ng-click="lobby.placeShip('1','J')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','J','ONE')" ng-click="lobby.placeShip('2','J')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','J','ONE')" ng-click="lobby.placeShip('3','J')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','J','ONE')" ng-click="lobby.placeShip('4','J')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','J','ONE')" ng-click="lobby.placeShip('5','J')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','J','ONE')" ng-click="lobby.placeShip('6','J')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','J','ONE')" ng-click="lobby.placeShip('7','J')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','J','ONE')" ng-click="lobby.placeShip('8','J')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','J','ONE')" ng-click="lobby.placeShip('9','J')" class="tableCell cell8"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <table class="boardTable" id="enemyBoard">
+                <thead>
+                    <tr>
+                        <th class="tableHead"></th>
+                        <th class="tableHead">0</th>
+                        <th class="tableHead">1</th>
+                        <th class="tableHead">2</th>
+                        <th class="tableHead">3</th>
+                        <th class="tableHead">4</th>
+                        <th class="tableHead">5</th>
+                        <th class="tableHead">6</th>
+                        <th class="tableHead">7</th>
+                        <th class="tableHead">8</th>
+                        <th class="tableHead">9</th>
+                    </tr>
+                </thead>
+                <tr class="boardRow row0">
+                    <td class="tableCell cellIndex">A</td>
+                    <td ng-class="getClass('0','A','TWO')" ng-click="lobby.targetShip('0','A')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','A','TWO')" ng-click="lobby.targetShip('1','A')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','A','TWO')" ng-click="lobby.targetShip('2','A')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','A','TWO')" ng-click="lobby.targetShip('3','A')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','A','TWO')" ng-click="lobby.targetShip('4','A')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','A','TWO')" ng-click="lobby.targetShip('5','A')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','A','TWO')" ng-click="lobby.targetShip('6','A')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','A','TWO')" ng-click="lobby.targetShip('7','A')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','A','TWO')" ng-click="lobby.targetShip('8','A')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','A','TWO')" ng-click="lobby.targetShip('9','A')" class="tableCell cell8"></td>                    
+                </tr>
+                <tr class="boardRow row1">
+                    <td class="tableCell cellIndex">B</td>
+                    <td ng-class="getClass('0','B','TWO')" ng-click="lobby.targetShip('0','B')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','B','TWO')" ng-click="lobby.targetShip('1','B')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','B','TWO')" ng-click="lobby.targetShip('2','B')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','B','TWO')" ng-click="lobby.targetShip('3','B')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','B','TWO')" ng-click="lobby.targetShip('4','B')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','B','TWO')" ng-click="lobby.targetShip('5','B')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','B','TWO')" ng-click="lobby.targetShip('6','B')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','B','TWO')" ng-click="lobby.targetShip('7','B')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','B','TWO')" ng-click="lobby.targetShip('8','B')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','B','TWO')" ng-click="lobby.targetShip('9','B')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row2">
+                    <td class="tableCell cellIndex">C</td>
+                    <td ng-class="getClass('0','C','TWO')" ng-click="lobby.targetShip('0','C')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','C','TWO')" ng-click="lobby.targetShip('1','C')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','C','TWO')" ng-click="lobby.targetShip('2','C')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','C','TWO')" ng-click="lobby.targetShip('3','C')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','C','TWO')" ng-click="lobby.targetShip('4','C')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','C','TWO')" ng-click="lobby.targetShip('5','C')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','C','TWO')" ng-click="lobby.targetShip('6','C')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','C','TWO')" ng-click="lobby.targetShip('7','C')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','C','TWO')" ng-click="lobby.targetShip('8','C')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','C','TWO')" ng-click="lobby.targetShip('9','C')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row3">
+                    <td class="tableCell cellIndex">D</td>
+                    <td ng-class="getClass('0','D','TWO')" ng-click="lobby.targetShip('0','D')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','D','TWO')" ng-click="lobby.targetShip('1','D')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','D','TWO')" ng-click="lobby.targetShip('2','D')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','D','TWO')" ng-click="lobby.targetShip('3','D')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','D','TWO')" ng-click="lobby.targetShip('4','D')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','D','TWO')" ng-click="lobby.targetShip('5','D')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','D','TWO')" ng-click="lobby.targetShip('6','D')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','D','TWO')" ng-click="lobby.targetShip('7','D')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','D','TWO')" ng-click="lobby.targetShip('8','D')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','D','TWO')" ng-click="lobby.targetShip('9','D')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row4">
+                    <td class="tableCell cellIndex">E</td>
+                    <td ng-class="getClass('0','E','TWO')" ng-click="lobby.targetShip('0','E')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','E','TWO')" ng-click="lobby.targetShip('1','E')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','E','TWO')" ng-click="lobby.targetShip('2','E')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','E','TWO')" ng-click="lobby.targetShip('3','E')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','E','TWO')" ng-click="lobby.targetShip('4','E')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','E','TWO')" ng-click="lobby.targetShip('5','E')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','E','TWO')" ng-click="lobby.targetShip('6','E')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','E','TWO')" ng-click="lobby.targetShip('7','E')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','E','TWO')" ng-click="lobby.targetShip('8','E')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','E','TWO')" ng-click="lobby.targetShip('9','E')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row5">
+                    <td class="tableCell cellIndex">F</td>
+                    <td ng-class="getClass('0','F','TWO')" ng-click="lobby.targetShip('0','F')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','F','TWO')" ng-click="lobby.targetShip('1','F')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','F','TWO')" ng-click="lobby.targetShip('2','F')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','F','TWO')" ng-click="lobby.targetShip('3','F')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','F','TWO')" ng-click="lobby.targetShip('4','F')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','F','TWO')" ng-click="lobby.targetShip('5','F')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','F','TWO')" ng-click="lobby.targetShip('6','F')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','F','TWO')" ng-click="lobby.targetShip('7','F')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','F','TWO')" ng-click="lobby.targetShip('8','F')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','F','TWO')" ng-click="lobby.targetShip('9','F')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row6">
+                    <td class="tableCell cellIndex">G</td>
+                    <td ng-class="getClass('0','G','TWO')" ng-click="lobby.targetShip('0','G')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','G','TWO')" ng-click="lobby.targetShip('1','G')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','G','TWO')" ng-click="lobby.targetShip('2','G')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','G','TWO')" ng-click="lobby.targetShip('3','G')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','G','TWO')" ng-click="lobby.targetShip('4','G')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','G','TWO')" ng-click="lobby.targetShip('5','G')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','G','TWO')" ng-click="lobby.targetShip('6','G')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','G','TWO')" ng-click="lobby.targetShip('7','G')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','G','TWO')" ng-click="lobby.targetShip('8','G')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','G','TWO')" ng-click="lobby.targetShip('9','G')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row7">
+                    <td class="tableCell cellIndex">H</td>
+                    <td ng-class="getClass('0','H','TWO')" ng-click="lobby.targetShip('0','H')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','H','TWO')" ng-click="lobby.targetShip('1','H')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','H','TWO')" ng-click="lobby.targetShip('2','H')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','H','TWO')" ng-click="lobby.targetShip('3','H')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','H','TWO')" ng-click="lobby.targetShip('4','H')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','H','TWO')" ng-click="lobby.targetShip('5','H')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','H','TWO')" ng-click="lobby.targetShip('6','H')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','H','TWO')" ng-click="lobby.targetShip('7','H')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','H','TWO')" ng-click="lobby.targetShip('8','H')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','H','TWO')" ng-click="lobby.targetShip('9','H')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row8">
+                    <td class="tableCell cellIndex">I</td>
+                    <td ng-class="getClass('0','I','TWO')" ng-click="lobby.targetShip('0','I')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','I','TWO')" ng-click="lobby.targetShip('1','I')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','I','TWO')" ng-click="lobby.targetShip('2','I')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','I','TWO')" ng-click="lobby.targetShip('3','I')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','I','TWO')" ng-click="lobby.targetShip('4','I')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','I','TWO')" ng-click="lobby.targetShip('5','I')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','I','TWO')" ng-click="lobby.targetShip('6','I')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','I','TWO')" ng-click="lobby.targetShip('7','I')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','I','TWO')" ng-click="lobby.targetShip('8','I')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','I','TWO')" ng-click="lobby.targetShip('9','I')" class="tableCell cell8"></td>
+                </tr>
+                <tr class="boardRow row9">
+                    <td class="tableCell cellIndex">J</td>
+                    <td ng-class="getClass('0','J','TWO')" ng-click="lobby.targetShip('0','J')" class="tableCell cell0"></td>
+                    <td ng-class="getClass('1','J','TWO')" ng-click="lobby.targetShip('1','J')" class="tableCell cell9"></td>
+                    <td ng-class="getClass('2','J','TWO')" ng-click="lobby.targetShip('2','J')" class="tableCell cell1"></td>
+                    <td ng-class="getClass('3','J','TWO')" ng-click="lobby.targetShip('3','J')" class="tableCell cell2"></td>
+                    <td ng-class="getClass('4','J','TWO')" ng-click="lobby.targetShip('4','J')" class="tableCell cell3"></td>
+                    <td ng-class="getClass('5','J','TWO')" ng-click="lobby.targetShip('5','J')" class="tableCell cell4"></td>
+                    <td ng-class="getClass('6','J','TWO')" ng-click="lobby.targetShip('6','J')" class="tableCell cell5"></td>
+                    <td ng-class="getClass('7','J','TWO')" ng-click="lobby.targetShip('7','J')" class="tableCell cell6"></td>
+                    <td ng-class="getClass('8','J','TWO')" ng-click="lobby.targetShip('8','J')" class="tableCell cell7"></td>
+                    <td ng-class="getClass('9','J','TWO')" ng-click="lobby.targetShip('9','J')" class="tableCell cell8"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

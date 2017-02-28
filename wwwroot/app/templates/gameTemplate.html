@@ -1,0 +1,306 @@
+<div class="row" style="text-align:center">
+    <h1>Battleship online!</h1>    
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-lg-6">
+            <table class="boardTable" id="homeBoard">
+                <thead>
+                    <tr>
+                        <th class="tableHead"></th>
+                        <th class="tableHead">0</th>
+                        <th class="tableHead">1</th>
+                        <th class="tableHead">2</th>
+                        <th class="tableHead">3</th>
+                        <th class="tableHead">4</th>
+                        <th class="tableHead">5</th>
+                        <th class="tableHead">6</th>
+                        <th class="tableHead">7</th>
+                        <th class="tableHead">8</th>
+                        <th class="tableHead">9</th>
+                    </tr>
+                </thead>
+                <tr class="boardRow row0">
+                    <td class="tableCell cellIndex">A</td>
+                    <td ng-class="{'emptyCell' : isEmpty('0','A'),shipCell' : isShip('0','A'),hitCell' : isHit('0','A')}" class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row1">
+                    <td class="tableCell cellIndex">B</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row2">
+                    <td class="tableCell cellIndex">C</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row3">
+                    <td class="tableCell cellIndex">D</td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                    <td class="tableCell cell0"></td>
+                </tr>
+                <tr class="boardRow row4">
+                    <td class="tableCell cellIndex">E</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row5">
+                    <td class="tableCell cellIndex">F</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row6">
+                    <td class="tableCell cellIndex">G</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row7">
+                    <td class="tableCell cellIndex">H</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row8">
+                    <td class="tableCell cellIndex">I</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row9">
+                    <td class="tableCell cellIndex">J</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <table class="boardTable" id="enemyBoard">
+                <thead>
+                    <tr>
+                        <th class="tableHead"></th>
+                        <th class="tableHead">0</th>
+                        <th class="tableHead">1</th>
+                        <th class="tableHead">2</th>
+                        <th class="tableHead">3</th>
+                        <th class="tableHead">4</th>
+                        <th class="tableHead">5</th>
+                        <th class="tableHead">6</th>
+                        <th class="tableHead">7</th>
+                        <th class="tableHead">8</th>
+                        <th class="tableHead">9</th>
+                    </tr>
+                </thead>
+                <tr class="boardRow row0">
+                    <td class="tableCell cellIndex">A</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row1">
+                    <td class="tableCell cellIndex">B</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row2">
+                    <td class="tableCell cellIndex">C</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row3">
+                    <td class="tableCell cellIndex">D</td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                    <td class="tableCell cell0"></td>
+                </tr>
+                <tr class="boardRow row4">
+                    <td class="tableCell cellIndex">E</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row5">
+                    <td class="tableCell cellIndex">F</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row6">
+                    <td class="tableCell cellIndex">G</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row7">
+                    <td class="tableCell cellIndex">H</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row8">
+                    <td class="tableCell cellIndex">I</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+                <tr class="boardRow row9">
+                    <td class="tableCell cellIndex">J</td>
+                    <td class="tableCell cell0"></td>
+                    <td class="tableCell cell1"></td>
+                    <td class="tableCell cell2"></td>
+                    <td class="tableCell cell3"></td>
+                    <td class="tableCell cell4"></td>
+                    <td class="tableCell cell5"></td>
+                    <td class="tableCell cell6"></td>
+                    <td class="tableCell cell7"></td>
+                    <td class="tableCell cell8"></td>
+                    <td class="tableCell cell9"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
